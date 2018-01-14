@@ -1,0 +1,4 @@
+.idea/
+*.log
+
+application/controllers/Test.php
