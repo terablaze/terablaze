@@ -17,7 +17,7 @@ class Simple extends Router\Route
 	 */
 	public function matches($url)
 	{
-		$url = rtrim($url, '/');
+		$url = trim($url, '/');
 		$pattern = $this->pattern;
 
 		// get keys

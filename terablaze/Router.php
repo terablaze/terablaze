@@ -189,8 +189,8 @@ class Router extends Base
 	{
 		$url= $this->url;
 		$parameters = array();
-		$controller = "home";
-		$action = "index";
+		$controller = get_config('default_controller');
+		$action = get_config('default_action');
 
 		Events::fire("terablaze.router.dispatch.before", array($url));
 
@@ -218,14 +218,14 @@ class Router extends Base
 
 		$parts = explode("/", trim($url, "/"));
 
-		if (sizeof($parts) > 0)
-		{
-			$controller = $parts[0];
+		if(!empty($url) && $url != '/') {
+			if (sizeof($parts) > 0) {
+				$controller = $parts[0];
 
-			if (sizeof($parts) >= 2)
-			{
-				$action = $parts[1];
-				$parameters = array_slice($parts, 2);
+				if (sizeof($parts) >= 2) {
+					$action = $parts[1];
+					$parameters = array_slice($parts, 2);
+				}
 			}
 		}
 

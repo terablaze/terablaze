@@ -79,8 +79,8 @@ try
 
 // router
 	$router = new TeraBlaze\Router(array(
-		"url" => isset($_SERVER[$config->uri_protocol]) ? substr($_SERVER[$config->uri_protocol], 1) : $config->default_controller_action,
-		"extension" => isset($_SERVER[$config->uri_protocol]) ? substr($_SERVER[$config->uri_protocol], 1) : $config->url_suffix
+		"url" => isset($_SERVER[$config->uri_protocol]) ? $_SERVER[$config->uri_protocol] : $config->default_controller.'/'.$config->default_action,
+		"extension" => isset($_SERVER[$config->uri_protocol]) ? $_SERVER[$config->uri_protocol] : $config->url_suffix
 	));
 	TeraBlaze\Registry::set("router", $router);
 

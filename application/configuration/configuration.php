@@ -76,7 +76,8 @@ $config['configuration'] = array(
 		 * Default CONTROLLER and ACTION
 		 *************************************************************************
 		 */
-		'default_controller_action' => 'home/index',
+		'default_controller' => 'home',
+		'default_action' => 'index',
 
 		/*
 		 *************************************************************************
