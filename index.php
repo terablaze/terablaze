@@ -2,7 +2,7 @@
 
 ob_start();
 
-define("TERABLAZE_VERSION", '0.1.0-alpha1');
+define("TERABLAZE_VERSION", '0.1.1');
 
 // update the paths below if you plan to rename or move these paths in your Operating system's filesystem'
 define("SYSTEM_DIR", __DIR__.'/terablaze/');
