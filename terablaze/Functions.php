@@ -30,8 +30,14 @@ function base_url($uri = '', $protocol = '', $port = '') {
 	return htmlspecialchars($link, ENT_QUOTES);
 }
 function site_url($uri = '', $protocol = '', $port = '') {
+	$post_server = '';
+	if(empty(get_config('index_script'))){
+		$post_server = $uri;
+	} else {
+		$post_server = get_config('index_script') . '/' . $uri;
+	}
 	if(!empty(get_config('base_url'))){
-		$link = get_config('base_url').get_config('virtual_location').get_config('index_script').'/'.$uri;
+		$link = get_config('base_url').get_config('virtual_location').$post_server;
 	} else {
 		if(empty($protocol)){
 			$protocol = get_config('default_protocol');
@@ -41,7 +47,7 @@ function site_url($uri = '', $protocol = '', $port = '') {
 		} else {
 			$port = ':'.$port;
 		}
-		$link = $protocol.'://'.$_SERVER['SERVER_NAME'].$port.get_config('virtual_location').get_config('index_script').'/'.$uri;
+		$link = $protocol.'://'.$_SERVER['SERVER_NAME'].$port.get_config('virtual_location').$post_server;
 	}
 	// Escape html
 	return htmlspecialchars($link, ENT_QUOTES);
