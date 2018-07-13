@@ -31,6 +31,10 @@ class Core
 			throw new \Exception("System and Application paths not properly defined");
 		}
 
+		require_once(SYSTEM_DIR . 'core/compat/mbstring.php');
+		require_once(SYSTEM_DIR . 'core/compat/hash.php');
+		require_once(SYSTEM_DIR . 'core/compat/standard.php');
+
 		// fix extra backslashes in $_POST/$_GET
 
 		if (get_magic_quotes_gpc())

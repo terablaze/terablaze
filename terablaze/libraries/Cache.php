@@ -50,16 +50,12 @@ class Cache extends Base
 			}
 		}
 
-		if (!$this->type)
-		{
-			throw new Exception\Argument("Invalid type");
-		}
-
 		Events::fire("terablaze.libraries.cache.initialize.after", array($this->type, $this->options));
 		
 		switch ($this->type)
 		{
 			case "memcached":
+			case "memcache":
 			{
 				$cache = new Cache\Driver\Memcached($this->options);
 				\TeraBlaze\Registry::set(get_config('app_id').'cache_'.$cache_conf, $cache);
@@ -76,7 +72,7 @@ class Cache extends Base
 			}
 			default:
 			{
-				throw new Exception\Argument("Invalid type");
+				throw new Exception\Argument("Invalid cache type or cache configuration not properly set in APPLICATION_DIR/configuration/cache.php");
 				break;
 			}
 		}

@@ -29,6 +29,7 @@ function base_url($uri = '', $protocol = '', $port = '') {
 	// Escape html
 	return htmlspecialchars($link, ENT_QUOTES);
 }
+
 function site_url($uri = '', $protocol = '', $port = '') {
 	$post_server = '';
 	if(empty(get_config('index_script'))){
@@ -116,5 +117,31 @@ function get_config($key){
 	global $config;
 	return $config->$key;
 }
+
+if(!function_exists('get_include_contents')) {
+	function get_include_contents($filename, $vars)
+	{
+		if (is_file($filename)) {
+			ob_start();
+			@extract($vars);
+			include $filename;
+			return ob_get_clean();
+		}
+		return false;
+	}
+}
+
+if(!function_exists('bytes_convert')) {
+	function bytes_convert($byte, $unit)
+	{
+		$kb = 1024;
+		$mb = 1024 * 1024;
+		$gb = 1024 * 1024 * 1024;
+		$tb = 1024 * 1024 * 1024 * 1024;
+
+		return ($byte / $$unit);
+	}
+}
+
 
 include_once APPLICATION_DIR.'configuration/functions.php';

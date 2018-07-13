@@ -43,7 +43,7 @@ class Data_validator
 	}
 
 	public function string($input_string){
-		return (bool) preg_match('/^[a-zA-Z0-9_- ]+$/i', $input_string);
+		return (bool) preg_match('/^[a-zA-Z0-9 _-]+$/i', $input_string);
 	}
 	
 	public function integer($input_string)
@@ -89,7 +89,11 @@ class Data_validator
 
 	public function valid_url($input_string)
 	{
-		if(filter_var('http://'.$input_string, FILTER_VALIDATE_URL))
+		if(
+			(filter_var('http://'.$input_string, FILTER_VALIDATE_URL)) ||
+			(filter_var('https://'.$input_string, FILTER_VALIDATE_URL)) ||
+			(filter_var($input_string, FILTER_VALIDATE_URL))
+		)
 		{
 			return TRUE;
 		}

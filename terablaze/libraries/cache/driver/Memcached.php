@@ -40,6 +40,8 @@ class Memcached extends Cache\Driver
 	 */
 	protected $_isConnected = false;
 
+	private $memcached_compressed = MEMCACHE_COMPRESSED;
+
 	protected function _isValidService()
 	{
 		$isEmpty = empty($this->_service);
@@ -52,6 +54,8 @@ class Memcached extends Cache\Driver
 
 		return false;
 	}
+
+	// TODO: Add support for multiple servers
 
 	public function connect()
 	{
@@ -90,7 +94,7 @@ class Memcached extends Cache\Driver
 			throw new Exception\Service("Not connected to a valid service");
 		}
 
-		$value = $this->_service->get($this->prefix.$key, MEMCACHE_COMPRESSED);
+		$value = $this->_service->get($this->prefix.$key, $this->memcached_compressed);
 
 		if ($value)
 		{
@@ -110,7 +114,35 @@ class Memcached extends Cache\Driver
 		if(empty($duration)){
 			$duration = $this->duration;
 		}
-		$this->_service->set($this->prefix.$key, serialize($value), MEMCACHE_COMPRESSED, $duration);
+		$this->_service->set($this->prefix.$key, serialize($value), $this->memcached_compressed, $duration);
+		return $this;
+	}
+
+	public function add($key, $value, $duration = "")
+	{
+		if (!$this->_isValidService())
+		{
+			throw new Exception\Service("Not connected to a valid service");
+		}
+
+		if(empty($duration)){
+			$duration = $this->duration;
+		}
+		$this->_service->add($this->prefix.$key, serialize($value), $this->memcached_compressed, $duration);
+		return $this;
+	}
+
+	public function replace($key, $value, $duration = "")
+	{
+		if (!$this->_isValidService())
+		{
+			throw new Exception\Service("Not connected to a valid service");
+		}
+
+		if(empty($duration)){
+			$duration = $this->duration;
+		}
+		$this->_service->replace($this->prefix.$key, serialize($value), $this->memcached_compressed, $duration);
 		return $this;
 	}
 

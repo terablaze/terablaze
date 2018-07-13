@@ -193,27 +193,40 @@ class Base
 	/**
 	 * @param $view_file
 	 * @param array $view_vars
-	 * @return Exception\Argument
+	 * @param $return
+	 *
+	 * @return bool|Exception\Argument
 	 *
 	 * includes the specified $view_file and extracts the $view_vars
 	 * for use in the view
 	 */
-	public function load_view($view_file, $view_vars = array())
+	public function load_view($view_file, $view_vars = array(), $return = FALSE)
 	{
 		Events::fire("terablaze.loader.view.before", array($view_file, $view_vars));
-		@extract($view_vars);
 
 		$ext = pathinfo($view_file, PATHINFO_EXTENSION);
 		$view_file = ($ext === '') ? $view_file.'.php' : $view_file;
 		$view_file = str_replace("::", "/", $view_file);
 		$filename = APPLICATION_DIR . 'views/' . $view_file;
+
 		if (file_exists($filename)) {
-			include $filename;
+
+			if((boolean) $return) {
+
+				$string = get_include_contents($filename, $view_vars);
+				return $string;
+
+			} else {
+				@extract($view_vars);
+				include $filename;
+			}
 		} else {
 			Events::fire("terablaze.loader.view.error", array($view_file, $view_vars));
 			return new Exception\Argument("Trying to Load Non Existing View: {$view_file}");
 		}
 		Events::fire("terablaze.loader.view.after", array($view_file, $view_vars));
+
+		return TRUE;
 	}
 
 	/**

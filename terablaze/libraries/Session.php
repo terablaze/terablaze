@@ -54,11 +54,6 @@ class Session extends Base
 				}
 			}
 		}
-
-		if (!$this->type)
-		{
-			throw new Exception\Argument("Invalid type");
-		}
 		
 		Events::fire("terablaze.libraries.session.initialize.after", array($this->type, $this->options));
 
@@ -67,6 +62,14 @@ class Session extends Base
 			case "server":
 			{
 				$session = new Session\Driver\Server($this->options);
+				\TeraBlaze\Registry::set(get_config('app_id').'session_'.$session_conf, $session);
+				return $session;
+				break;
+			}
+			case "memcache":
+			case "memcached":
+			{
+				$session = new Session\Driver\Memcached($this->options);
 				\TeraBlaze\Registry::set(get_config('app_id').'session_'.$session_conf, $session);
 				return $session;
 				break;
@@ -80,7 +83,7 @@ class Session extends Base
 			}
 			default:
 			{
-				throw new Exception\Argument("Invalid type");
+				throw new Exception\Argument("Invalid session type or session configuration not properly set in APPLICATION_DIR/configuration/session.php");
 				break;
 			}
 		}

@@ -122,14 +122,14 @@ class StringMethods
 		preg_match_all(self::_normalize($pattern), $string, $matches, PREG_PATTERN_ORDER);
 
 		if (!empty($matches[1])) {
-			return $matches[1];
+			return (array)$matches[1];
 		}
 
 		if (!empty($matches[0])) {
-			return $matches[0];
+			return (array)$matches[0];
 		}
 
-		return null;
+		return (array)null;
 	}
 
 	/**

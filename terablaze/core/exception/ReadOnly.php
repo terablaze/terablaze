@@ -3,9 +3,9 @@
 namespace TeraBlaze\Core\Exception
 {
     use TeraBlaze\Core as Core;
-
-    class Argument extends Core\Exception
+    
+    class ReadOnly extends Core\Exception
     {
-
+        
     }
 }
