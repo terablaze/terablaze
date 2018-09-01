@@ -18,12 +18,28 @@ $config["cache"]= array(
 		"duration" => 120
 	),
 
+	"memcached" => array(
+
+		"type" => "memcached",
+		"prefix" => get_config('app_id')."_",
+		"host" => "127.0.0.1",
+		"port" => 11211,
+		"duration" => 120
+	),
+
+	"memcache" => array(
+
+		"type" => "memcache",
+		"prefix" => get_config('app_id')."_",
+		"host" => "127.0.0.1",
+		"port" => 11211,
+		"duration" => 120
+	),
+
 	"file" => array(
 
 		"type" => "file",
 		"prefix" => APP_ID."_",
-		"host" => "127.0.0.1",
-		"port" => 11211,
 		"duration" => 3600,
 		"directory" => APPLICATION_DIR.'storage/cache/'
 	)

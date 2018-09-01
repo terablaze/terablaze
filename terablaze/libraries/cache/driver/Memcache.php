@@ -11,7 +11,7 @@ namespace TeraBlaze\Libraries\Cache\Driver;
 use TeraBlaze\Libraries\Cache as Cache;
 use TeraBlaze\Libraries\Cache\Exception as Exception;
 
-class Memcached extends Cache\Driver
+class Memcache extends Cache\Driver
 {
 	protected $_service;
 
@@ -40,12 +40,12 @@ class Memcached extends Cache\Driver
 	 */
 	protected $_isConnected = false;
 
-	private $memcached_compressed = \Memcached::OPT_COMPRESSION;
+	private $memcached_compressed = MEMCACHE_COMPRESSED;
 
 	protected function _isValidService()
 	{
 		$isEmpty = empty($this->_service);
-		$isInstance = $this->_service instanceof \Memcached;
+		$isInstance = $this->_service instanceof \Memcache;
 
 		if ($this->isConnected && $isInstance && !$isEmpty)
 		{
@@ -61,19 +61,11 @@ class Memcached extends Cache\Driver
 	{
 		try
 		{
-			$this->_service = new \Memcached();
-			$servers = $this->_service->getServerList();
-			if(is_array($servers)) {
-				foreach ($servers as $server)
-					if($server['host'] == $this->host and $server['port'] == $this->port)
-						return $this;
-			}
-			$this->_service->addServer(
+			$this->_service = new \Memcache();
+			$this->_service->connect(
 				$this->host,
 				$this->port
 			);
-			$this->_service->setOption(\Memcached::OPT_COMPRESSION, TRUE);
-
 			$this->isConnected = true;
 		}
 		catch (\Exception $e)
@@ -88,7 +80,7 @@ class Memcached extends Cache\Driver
 	{
 		if ($this->_isValidService())
 		{
-			$this->_service->resetServerList();
+			$this->_service->close();
 			$this->isConnected = false;
 		}
 
@@ -102,7 +94,7 @@ class Memcached extends Cache\Driver
 			throw new Exception\Service("Not connected to a valid service");
 		}
 
-		$value = $this->_service->get($this->prefix.$key);
+		$value = $this->_service->get($this->prefix.$key, $this->memcached_compressed);
 
 		if ($value)
 		{
@@ -122,7 +114,7 @@ class Memcached extends Cache\Driver
 		if(empty($duration)){
 			$duration = $this->duration;
 		}
-		$this->_service->set($this->prefix.$key, serialize($value), $duration);
+		$this->_service->set($this->prefix.$key, serialize($value), $this->memcached_compressed, $duration);
 		return $this;
 	}
 
@@ -136,7 +128,7 @@ class Memcached extends Cache\Driver
 		if(empty($duration)){
 			$duration = $this->duration;
 		}
-		$this->_service->add($this->prefix.$key, serialize($value), $duration);
+		$this->_service->add($this->prefix.$key, serialize($value), $this->memcached_compressed, $duration);
 		return $this;
 	}
 
@@ -150,17 +142,11 @@ class Memcached extends Cache\Driver
 		if(empty($duration)){
 			$duration = $this->duration;
 		}
-		$this->_service->replace($this->prefix.$key, serialize($value), $duration);
+		$this->_service->replace($this->prefix.$key, serialize($value), $this->memcached_compressed, $duration);
 		return $this;
 	}
 
-
 	public function erase($key)
-	{
-		return $this->delete($key);
-	}
-
-	public function delete($key)
 	{
 		if (!$this->_isValidService())
 		{

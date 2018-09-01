@@ -55,9 +55,15 @@ class Cache extends Base
 		switch ($this->type)
 		{
 			case "memcached":
-			case "memcache":
 			{
 				$cache = new Cache\Driver\Memcached($this->options);
+				\TeraBlaze\Registry::set(get_config('app_id').'cache_'.$cache_conf, $cache);
+				return $cache;
+				break;
+			}
+			case "memcache":
+			{
+				$cache = new Cache\Driver\Memcache($this->options);
 				\TeraBlaze\Registry::set(get_config('app_id').'cache_'.$cache_conf, $cache);
 				return $cache;
 				break;

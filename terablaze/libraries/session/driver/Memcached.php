@@ -34,6 +34,11 @@ class Memcached extends Session\Driver
 	/**
 	 * @readwrite
 	 */
+	protected $_type;
+
+	/**
+	 * @readwrite
+	 */
 	protected $_duration;
 
 
@@ -41,9 +46,23 @@ class Memcached extends Session\Driver
 	public function __construct($options = array())
 	{
 		parent::__construct($options);
-		$session_save_path = "tcp://$this->_host:$this->_port?persistent=1&weight=2&timeout=2&retry_interval=10";
-		ini_set('session.save_handler', 'memcache');
+		switch ($this->_type) {
+			case 'memcached':
+				$session_save_path = "$this->_host:$this->_port?persistent=1&weight=2&timeout=2&retry_interval=10";
+				ini_set('session.save_handler', 'memcached');
+				break;
+			case 'memcache':
+				$session_save_path = "tcp://$this->_host:$this->_port?persistent=1&weight=2&timeout=2&retry_interval=10";
+				ini_set('session.save_handler', 'memcache');
+				break;
+			default:
+				$session_save_path = "$this->_host:$this->_port?persistent=1&weight=2&timeout=2&retry_interval=10";
+				ini_set('session.save_handler', 'memcached');
+
+		}
 		ini_set('session.save_path', $session_save_path);
+		$TBMemcachedSessionHandler = new Memcached\TBMemcachedSessionHandler();
+		session_set_save_handler($TBMemcachedSessionHandler);
 		@session_start();
 	}
 
