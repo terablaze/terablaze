@@ -204,10 +204,12 @@ class Router extends Base
 				$parameters = $route->parameters;
 				$method = $route->method;
 
+				$request_method = strtolower($_SERVER['REQUEST_METHOD']);
+
 				Events::fire("terablaze.router.dispatch.after", array($url, $controller, $action, $parameters, $method));
 
-				if((strtolower($_SERVER['REQUEST_METHOD']) == $method) || empty($method) ) {
-					$this->_pass($controller, $action, $parameters, $method);
+				if(@in_array($request_method, $method) || $request_method === $method || empty($method) ) {
+					$this->_pass($controller, $action, $parameters, $request_method);
 					return;
 				} else {
 					http_response_code(405);
