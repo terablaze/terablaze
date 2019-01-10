@@ -287,7 +287,7 @@ class Query extends Base
 		return $this;
 	}
 
-	public function join($join, $on, $fields = array())
+	public function join($join, $on='', $fields = array())
 	{
 		if (empty($join))
 		{
@@ -337,6 +337,18 @@ class Query extends Base
 
 		$this->_fields += array($join => $fields);
 		$this->_join[] = "RIGHT JOIN {$join} ON {$on}";
+
+		return $this;
+	}
+
+	public function cross_join($join)
+	{
+		if (empty($join))
+		{
+			throw new Exception\Argument("Invalid argument");
+		}
+
+		$this->_join[] = "CROSS JOIN {$join}";
 
 		return $this;
 	}

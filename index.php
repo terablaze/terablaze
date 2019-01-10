@@ -60,7 +60,6 @@ try
 		"type" => "phparray"
 	));
 	TeraBlaze\Registry::set("configuration", $configuration->initialize());
-	require_once APPLICATION_DIR."configuration/autoload.php";
 
 	$config = '';
 
@@ -149,6 +148,16 @@ catch (Exception $e)
 			"TeraBlaze\Libraries\Session\Exception",
 			"TeraBlaze\Libraries\Session\Exception\Argument",
 			"TeraBlaze\Libraries\Session\Exception\Implementation",
+
+			"TeraBlaze\Libraries\Cookie\Exception",
+			"TeraBlaze\Libraries\Cookie\Exception\Argument",
+			"TeraBlaze\Libraries\Cookie\Exception\Implementation",
+
+
+			"TeraBlaze\Libraries\Ftp\Exception",
+			"TeraBlaze\Libraries\Ftp\Exception\Service",
+			"TeraBlaze\Libraries\Ftp\Exception\Argument",
+			"TeraBlaze\Libraries\Ftp\Exception\Implementation",
 
 			"TeraBlaze\Libraries\Template\Exception",
 			"TeraBlaze\Libraries\Template\Exception\Argument",
