@@ -62,10 +62,10 @@ function time_elapsed_string($datetime, $full = false) {
 	$now = new \DateTime;
 	$ago = new \DateTime($datetime);
 	$diff = $now->diff($ago);
-
+	
 	$diff->w = floor($diff->d / 7);
 	$diff->d -= $diff->w * 7;
-
+	
 	$string = array(
 		'y' => __('year'),
 		'm' => __('month'),
@@ -82,33 +82,35 @@ function time_elapsed_string($datetime, $full = false) {
 			unset($string[$k]);
 		}
 	}
-
+	
 	if (!$full) $string = array_slice($string, 0, 1);
 	return $string ? implode(', ', $string) . ' '.__('ago') : __('just_now');
 }
 
 function slug($text){
-
+	
 	// replace non letter or digits by -
 	$text = preg_replace('~[^\\pL\d]+~u', '-', $text);
-
+	
 	// trim
 	$text = trim($text, '-');
-
+	
 	// transliterate
-	$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
+	if(function_exists('iconv')) {
+		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+	}
+	
 	// lowercase
 	$text = strtolower($text);
-
+	
 	// remove unwanted characters
 	$text = preg_replace('~[^-\w]+~', '', $text);
-
+	
 	if (empty($text))
 	{
 		return 'n-a';
 	}
-
+	
 	return $text;
 }
 
@@ -132,16 +134,81 @@ if(!function_exists('get_include_contents')) {
 }
 
 if(!function_exists('bytes_convert')) {
+	/**
+	 * @param $byte
+	 * @param $unit
+	 * @return float|int
+	 */
 	function bytes_convert($byte, $unit)
 	{
 		$kb = 1024;
 		$mb = 1024 * 1024;
 		$gb = 1024 * 1024 * 1024;
 		$tb = 1024 * 1024 * 1024 * 1024;
-
+		
 		return ($byte / $$unit);
 	}
 }
 
+if ( ! function_exists('is_https'))
+{
+	/**
+	 * Is HTTPS?
+	 *
+	 * Determines if the application is accessed via an encrypted
+	 * (HTTPS) connection.
+	 *
+	 * @return	bool
+	 */
+	function is_https()
+	{
+		if ( ! empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off')
+		{
+			return TRUE;
+		}
+		elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+		{
+			return TRUE;
+		}
+		elseif ( ! empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off')
+		{
+			return TRUE;
+		}
+		
+		return FALSE;
+	}
+}
 
-include_once APPLICATION_DIR.'configuration/functions.php';
+
+if ( ! function_exists('log_error'))
+{
+	/**
+	 * @param $message
+	 * @param bool $tofile
+	 */
+	function log_error($message, $tofile = true)
+	{
+		if(is_array($message) || is_object($message)){
+			$message = json_encode($message);
+		}
+		
+		if (ini_get('display_errors') == 1){
+			echo '<pre style="color: #FF0000">';
+			print_r($message);
+			echo '</pre>';
+		} else {
+			echo ('<code style="color: #FF0000">An error occurred.</code>');
+		}
+		if($tofile) {
+			if (!is_dir(APPLICATION_DIR . 'logs/errors')) {
+				mkdir(APPLICATION_DIR . 'logs/errors/', 0777, true);
+			}
+			file_put_contents(APPLICATION_DIR . 'logs/errors/' . date("Y-F-d") . ".log", $message."\n\n", FILE_APPEND);
+		}
+	}
+}
+
+
+if(file_exists(APPLICATION_DIR.'configuration/functions.php')) {
+	include_once APPLICATION_DIR . 'configuration/functions.php';
+}

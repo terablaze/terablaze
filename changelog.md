@@ -1,5 +1,13 @@
 # TeraBlaze change log
 
+## v0.1.5 (24-february-2019)
+#### Bugs fixed
+* Other bug fixes
+#### Changes
+* Adds changes to ensure file existence is verified before including or requiring in some core TeraBlaze scripts
+#### Addition
+* Added is_https() function and log_error() function
+
 ## v0.1.4 (1-september-2018)
 #### Bugs fixed
 * Fixed delay experienced in some setups when using memcached as the session storage 
