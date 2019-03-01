@@ -8,57 +8,61 @@
 
 
 function redirect($url = ""){
-	header('Location: '.$url);
+	header('Location: ' . $url);
 	exit();
 }
 
-function base_url($uri = '', $protocol = '', $port = '') {
-	if(!empty(get_config('base_url'))){
-		$link = get_config('base_url').get_config('virtual_location').$uri;
+function base_url($uri = '', $protocol = '', $port = ''){
+	if (!empty(get_config('base_url'))) {
+		$link = get_config('base_url') . get_config('virtual_location') . $uri;
 	} else {
-		if(empty($protocol)){
+		if (empty($protocol)) {
 			$protocol = get_config('default_protocol');
 		}
-		if(empty($port)) {
+		if (empty($port)) {
 			$port = ($_SERVER['SERVER_PORT'] == 80) ? '' : ':' . $_SERVER['SERVER_PORT'];
 		} else {
-			$port = ':'.$port;
+			$port = ':' . $port;
 		}
-		$link = $protocol.'://'.$_SERVER['SERVER_NAME'].$port.get_config('virtual_location').$uri;
+		$link = $protocol . '://' . $_SERVER['SERVER_NAME'] . $port . get_config('virtual_location') . $uri;
 	}
 	// Escape html
 	return htmlspecialchars($link, ENT_QUOTES);
 }
 
-function site_url($uri = '', $protocol = '', $port = '') {
+function site_url($uri = '', $protocol = '', $port = ''){
 	$post_server = '';
-	if(empty(get_config('index_script'))){
+	if (empty(get_config('index_script'))) {
 		$post_server = $uri;
 	} else {
 		$post_server = get_config('index_script') . '/' . $uri;
 	}
-	if(!empty(get_config('base_url'))){
-		$link = get_config('base_url').get_config('virtual_location').$post_server;
+	if (!empty(get_config('base_url'))) {
+		$link = get_config('base_url') . get_config('virtual_location') . $post_server;
 	} else {
-		if(empty($protocol)){
+		if (empty($protocol)) {
 			$protocol = get_config('default_protocol');
 		}
-		if(empty($port)) {
+		if (empty($port)) {
 			$port = ($_SERVER['SERVER_PORT'] == 80) ? '' : ':' . $_SERVER['SERVER_PORT'];
 		} else {
-			$port = ':'.$port;
+			$port = ':' . $port;
 		}
-		$link = $protocol.'://'.$_SERVER['SERVER_NAME'].$port.get_config('virtual_location').$post_server;
+		$link = $protocol . '://' . $_SERVER['SERVER_NAME'] . $port . get_config('virtual_location') . $post_server;
 	}
 	// Escape html
 	return htmlspecialchars($link, ENT_QUOTES);
 }
 
-function make_dir($dir, $recursive = TRUE) {
-	return mkdir($dir, 0777, $recursive);
+function make_dir($dir, $recursive = TRUE){
+	if (!is_dir($dir)) {
+		return mkdir($dir, 0777, $recursive);
+	} else {
+		return $dir;
+	}
 }
 
-function time_elapsed_string($datetime, $full = false) {
+function time_elapsed_string($datetime, $full = false){
 	$now = new \DateTime;
 	$ago = new \DateTime($datetime);
 	$diff = $now->diff($ago);
@@ -84,7 +88,7 @@ function time_elapsed_string($datetime, $full = false) {
 	}
 	
 	if (!$full) $string = array_slice($string, 0, 1);
-	return $string ? implode(', ', $string) . ' '.__('ago') : __('just_now');
+	return $string ? implode(', ', $string) . ' ' . __('ago') : __('just_now');
 }
 
 function slug($text){
@@ -106,21 +110,19 @@ function slug($text){
 	// remove unwanted characters
 	$text = preg_replace('~[^-\w]+~', '', $text);
 	
-	if (empty($text))
-	{
+	if (empty($text)) {
 		return 'n-a';
 	}
 	
 	return $text;
 }
 
-
 function get_config($key){
 	global $config;
 	return $config->$key;
 }
 
-if(!function_exists('get_include_contents')) {
+if (!function_exists('get_include_contents')) {
 	function get_include_contents($filename, $vars)
 	{
 		if (is_file($filename)) {
@@ -150,8 +152,7 @@ if(!function_exists('bytes_convert')) {
 	}
 }
 
-if ( ! function_exists('is_https'))
-{
+if ( ! function_exists('is_https')){
 	/**
 	 * Is HTTPS?
 	 *
@@ -160,8 +161,7 @@ if ( ! function_exists('is_https'))
 	 *
 	 * @return	bool
 	 */
-	function is_https()
-	{
+	function is_https(){
 		if ( ! empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off')
 		{
 			return TRUE;
@@ -180,14 +180,12 @@ if ( ! function_exists('is_https'))
 }
 
 
-if ( ! function_exists('log_error'))
-{
+if ( ! function_exists('log_error')){
 	/**
 	 * @param $message
 	 * @param bool $tofile
 	 */
-	function log_error($message, $tofile = true)
-	{
+	function log_error($message, $tofile = true){
 		if(is_array($message) || is_object($message)){
 			$message = json_encode($message);
 		}
@@ -207,7 +205,6 @@ if ( ! function_exists('log_error'))
 		}
 	}
 }
-
 
 if(file_exists(APPLICATION_DIR.'configuration/functions.php')) {
 	include_once APPLICATION_DIR . 'configuration/functions.php';
