@@ -116,7 +116,7 @@ class Router extends Base
 			}
 			Registry::set("controller", $instance);
 		}
-		catch (Exception\Controller $e)
+		catch (/*Exception\Controller $e*/ \Exception $e)
 		{
 			throw new Exception\Controller("Controller {$name} not found");
 		}
