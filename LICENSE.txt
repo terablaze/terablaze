@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2017, TeraBoxX (email teraboxxinc@gmail.com for additional info)
+Copyright (c) 2020, TeraBoxX (email tomiwa@teraboxx.com for additional info)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

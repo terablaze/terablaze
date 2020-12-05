@@ -2,21 +2,15 @@
 
 TeraBlaze is a PHP MVC framework for developing web applications. It is an open source framework released under MIT License.
 
-## Installation, Configuration and Testing
+## Installation, Configuration and Running
 ### Requirements
  1. Web server
  2. PHP
  3. MySQL (*optional*)
- 4. Composer (*optional*) 
+ 4. Composer
 
-### There are two ways to install **TeraBlaze**. 
- 1. Direct download
- 2. Via Composer (*recommended*). 
-
-#### 1. Direct download
-Simply download the latest stable version from GitHub and extract to the desired web-accessible folder on your server.
-
-#### 2. Via Composer (*recommended*)
+### Installation.
+#### 1. Via Composer (*recommended*)
 Navigate to the desired web-accessible folder on your server and run the following command from the command line.
 
     composer create-project terablaze/terablaze ./
@@ -26,12 +20,12 @@ to install in the current folder  or
 to install in the 'project-folder'
 
 ### Configuration
-Though the default **TeraBlaze** configuration settings is enough to get you started, it is advisable and in some cases compulsory to go through the `application/configuration/configuration.php`  file and configure accordingly.
+First, create a `.env` file using the `.ent.template` file as a guide
 
-It is also necessary to configure the other configuration files in the `application/configuration` directory if you will be using some of the built in libraries.
+Though the default **TeraBlaze** configuration settings is enough to get you started, it is advisable and in some cases compulsory to go through the `config`  directory and configure accordingly.
 
-### Testing
-Navigate to the **TeraBlaze** root folder via the command line and run 
+### Running
+Navigate to your project's root folder via the command line and run 
 
     php -S localhost:8000
 visit `http://localhost:8000` in your browser.
@@ -40,67 +34,56 @@ If you are not using the build in PHP server, visit your installation folder in 
 
 If you see the **TeraBlaze** welcome page without errors, then your installation is successful.
 
-The controller to the welcome page is `application/controllers/Home.php` and the view file is `application/views/welcome.php`
+The controller to the welcome page is `src/App/Controller/WelcomeController.php` and the view file is `src/App/views/welcome.php`
 
 ## Using
 
 ### Controllers
-Create your controllers in the `application/controllers` folder.
+Create your controllers in the `src/App/Controller` folder (You can use any directory as long as the Controller namespace/class matches the directory/file path).
 
-Controllers are simply PHP classes. The class name and the class file name must be the same including the case used. That is, if your controller class is `User`, it must be in `User.php` file in the `application/controllers` folder.
-
-Your controller class should extend the base controller `\TeraBlaze\Controller` i.e. `User extends \TeraBlaze\Controller`
-
-It is a good practice that models be loaded in the controllers.
+Your controller class should extend the base controller `\TeraBlaze\Controller\Controller` to have access to some nice features the base controller offers
 
 
 ### Models
-Create your models in the `application/models` folder.
+Create your models in the `src/App/Model` folder (You can use any directory as long as the Model namespace/class matches the directory/file path).
 
 Models are simply PHP classes. The class name and the class file name must be the same including the case used. That is, if your model class is `User_model`, it must be in `User_model.php` file in the `application/models` folder.
 
-Your model class should extend the base model`\TeraBlaze\Model` i.e. `User extends \TeraBlaze\Model`
-
-To load a model, simply instantiate the model as you would any other PHP class. If the model and the class where it is being instantiated from share the same namespace, then the starting `\` should not be used, but if not, it should be used. 
-
-That is
-
-`$instance = new User_model()`  if namespace is shared
-
-and 
-
-`$instance = new \User_model()`  if namespace is not shared
+Your model class should extend the base model`\TeraBlaze\Ripana\ORM\Model`
 
 ### Views 
-Create your views in the `application/views` folder.
+Create your views in the `src/App/views` folder.
 
 Views are simply PHP files and should be loaded from the controllers
 
 To load your view files, simply use 
 
-`$this->load_view('home')` if the view file is `application/views/home.php`
-
-If the view file is not directly in the `application/views` directory, use the relative path to the view file like this:
-
-`$this->load_view('user/login')` if the view file is `application/views/user/login.php`
+`$this->loadView('App::view_file')`
 
 Pass an optional second argument which is an array and is extracted internally and therefore available in the view as variables.
 
 For instance:
 
-    $data = array(
+    $data = [
 	    'name' = 'TeraBlaze',
 	    'type' = 'MVC Framework',
 	    'language' = 'PHP'
-    );
+    ];
     
-    $this->load_view('home', $data);
-The code above will make the variables `$name`, `$type` and `$language` available in the `application/views/home.php` view file
+    $this->loadView('App::home', $data);
+The code above will make the variables `$name`, `$type` and `$language` available in the `src/App/views/home.php` view file
 
+To load a view from within another view, use `$this->includeView('App::included_view_file')`, this allows the included view have access to the variables extracted in the parent view
+
+## Stability status
+It is very important to note that this framework is currently very unstable and may change frequently for now. 
+As much as we use it in several live projects(from really simple projects to very 
+big and complex projects), we do not advise you to use in a production environment 
+unless you are sure of what you're doing and you're willing to invest the time.
 
 ## Contributing
-Simply fork the project and make pull requests. Try to go through the code so as to not deviate too much from our code style.
+Simply fork the project and make pull requests. Try to go through the code to not deviate too much from our code style.
 
-If you are interested in joining the development team, simply mail `teraboxxinc@gmail.com`
+If you are interested in joining the development team, simply mail `tomiwa@teraboxx.com`
 
 Note that the email used here will likely change soon.

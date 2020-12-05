@@ -1,4 +1,6 @@
-.idea/
 *.log
-
-application/controllers/Test.php
+/vendor/
+/node_modules/
+.idea/
+/.env
+/public/uploads/

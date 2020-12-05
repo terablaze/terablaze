@@ -2,20 +2,45 @@
   "name": "terablaze/terablaze",
   "type": "project",
   "description": "A lightning fast feature-rich PHP MVC framework Edit",
-  "keywords": ["php","mvc","framework"],
+  "keywords": [
+    "php",
+    "mvc",
+    "framework"
+  ],
   "homepage": "https://github.com/terablaze/terablaze",
   "license": "MIT",
   "authors": [
     {
       "name": "Tomiwa Ibiwoye",
       "email": "tomiwa@teraboxx.com",
-      "homepage": "http://terajournal.com/tommy",
+      "homepage": "https://teraboxx.com",
       "role": "Lead developer"
     }
   ],
   "require": {
-    "php": ">=5.6.0",
-    "ext-json": "*"
+    "php": "^7.2",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-memcached": "*",
+    "ext-mysqli": "*",
+    "ext-openssl": "*",
+    "ext-intl": "*",
+    "symfony/dotenv": "^5.1@dev",
+    "terablaze/core": "dev-master"
   },
-  "minimum-stability": "dev"
+  "require-dev": {
+    "filp/whoops": "^2.9",
+    "middlewares/response-time": "9999999-dev",
+    "middlewares/debugbar": "9999999-dev",
+    "symfony/var-dumper": "^5.1@dev"
+  },
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "": "src"
+    },
+    "files": [
+      "config/functions.php"
+    ]
+  }
 }
