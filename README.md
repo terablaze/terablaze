@@ -47,8 +47,6 @@ Your controller class should extend the base controller `\TeraBlaze\Controller\C
 ### Models
 Create your models in the `src/App/Model` folder (You can use any directory as long as the Model namespace/class matches the directory/file path).
 
-Models are simply PHP classes. The class name and the class file name must be the same including the case used. That is, if your model class is `User_model`, it must be in `User_model.php` file in the `application/models` folder.
-
 Your model class should extend the base model`\TeraBlaze\Ripana\ORM\Model`
 
 ### Views 

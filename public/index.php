@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\AppKernel;
+use App\App;
 use Symfony\Component\Dotenv\Dotenv;
 use TeraBlaze\HttpBase\Request;
 // TeraBlaze Version
@@ -17,7 +17,7 @@ try {
 }
 
 $debug = isset($_SERVER['APP_DEBUG']) ? (bool) $_SERVER['APP_DEBUG'] : true;
-$kernel = new AppKernel($_SERVER['APP_ENV'], $debug);
+$kernel = new App($_SERVER['APP_ENV'], $debug);
 
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);

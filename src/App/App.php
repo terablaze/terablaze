@@ -6,7 +6,7 @@ use DirectoryIterator;
 use TeraBlaze\Core\Kernel\Kernel;
 use TeraBlaze\Core\Kernel\KernelInterface;
 
-class AppKernel extends Kernel implements KernelInterface
+class App extends Kernel implements KernelInterface
 {
     public function boot(): void
     {
