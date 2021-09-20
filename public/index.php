@@ -7,7 +7,9 @@ use TeraBlaze\HttpBase\Response;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-(new \Symfony\Component\Dotenv\Dotenv())->bootEnv(dirname(__DIR__) . '/.env');
+if(is_file(dirname(__DIR__) . '/.env')) {
+    (new \Symfony\Component\Dotenv\Dotenv())->bootEnv(dirname(__DIR__) . '/.env');
+}
 
 if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? false) {
     Request::setTrustedProxies(
