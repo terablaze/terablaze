@@ -2,25 +2,30 @@
 
 declare(strict_types=1);
 
-use App\App;
-use Symfony\Component\Dotenv\Dotenv;
 use TeraBlaze\HttpBase\Request;
-// TeraBlaze Version
-define("TERABLAZE_VERSION", 'dev-master');
+use TeraBlaze\HttpBase\Response;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . "/../vendor/autoload.php";
 
-try {
-    (new Dotenv())->bootEnv(dirname(__DIR__) . '/.env');
-} catch (Exception $e) {
+(new \Symfony\Component\Dotenv\Dotenv())->bootEnv(dirname(__DIR__) . '/.env');
 
+if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? false) {
+    Request::setTrustedProxies(
+        explode(',', $trustedProxies),
+        Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST
+    );
 }
 
-$debug = isset($_SERVER['APP_DEBUG']) ? (bool) $_SERVER['APP_DEBUG'] : true;
-$kernel = new App($_SERVER['APP_ENV'], $debug);
+if ($trustedHosts = '^(localhost|terablaze.terablaze.test)$' ?? false) {
+    Request::setTrustedHosts([$trustedHosts]);
+}
 
+$kernel = new Kernel($_SERVER['APP_ENV'], (bool)$_SERVER['APP_DEBUG']);
+
+/** @var Request $request */
 $request = Request::createFromGlobals();
+
+/** @var Response */
 $response = $kernel->handle($request);
 
 $response->send();
-

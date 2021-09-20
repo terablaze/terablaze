@@ -2,24 +2,12 @@
 
 namespace App;
 
-use DirectoryIterator;
-use TeraBlaze\Core\Kernel\Kernel;
-use TeraBlaze\Core\Kernel\KernelInterface;
+use TeraBlaze\Core\Parcel\Parcel;
 
-class App extends Kernel implements KernelInterface
+class App extends Parcel
 {
     public function boot(): void
     {
-        parent::boot();
-        $path = $this->getProjectDir() . "/src/Plugins";
-        $iterator = new DirectoryIterator($path);
-
-        foreach ($iterator as $item) {
-            if (!$item->isDot() && $item->isDir()) {
-                if (file_exists($path . '/' . $item->getFilename() . '/initialize.php')) {
-                    include($path . '/' . $item->getFilename() . '/initialize.php');
-                }
-            }
-        }
+        $this->loadViewFrom('views');
     }
 }

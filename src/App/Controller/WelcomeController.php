@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use TeraBlaze\Controller\Controller;
+use TeraBlaze\Controller\AbstractController;
 use TeraBlaze\HttpBase\Request;
 use TeraBlaze\HttpBase\Response;
 
-class WelcomeController extends Controller
+class WelcomeController extends AbstractController
 {
     public function index(Request $request): Response
     {

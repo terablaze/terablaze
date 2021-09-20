@@ -10,10 +10,4 @@ return [
 		'controller' => \App\Controller\WelcomeController::class,
 		'action' => 'index'
 	],
-
-    'welcome-alt' => [
-        'pattern' => 'landing',
-        'controller' => \App\Controller\WelcomeController::class,
-        'action' => 'index'
-    ]
 ];

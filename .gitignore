@@ -5,10 +5,7 @@
 *.log
 /var
 /storage
-/database
 /vendor
 /node_modules
 composer.lock
-/config
-/tests
 .phpcs-cache
