@@ -3437,12 +3437,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/terablaze/core.git",
-                "reference": "cfc6cad012d8a2b709c38bd46a10864cb7c46c59"
+                "reference": "5491e50f501313507c316129af1172d1ba989075"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/terablaze/core/zipball/cfc6cad012d8a2b709c38bd46a10864cb7c46c59",
-                "reference": "cfc6cad012d8a2b709c38bd46a10864cb7c46c59",
+                "url": "https://api.github.com/repos/terablaze/core/zipball/5491e50f501313507c316129af1172d1ba989075",
+                "reference": "5491e50f501313507c316129af1172d1ba989075",
                 "shasum": ""
             },
             "require": {
@@ -3527,7 +3527,7 @@
                 "issues": "https://github.com/terablaze/core/issues",
                 "source": "https://github.com/terablaze/core/tree/master"
             },
-            "time": "2021-09-21T08:54:21+00:00"
+            "time": "2021-09-21T09:37:12+00:00"
         },
         {
             "name": "terablaze/psr7",
