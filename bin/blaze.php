@@ -2,7 +2,7 @@
 <?php
 
 use TeraBlaze\DotEnv\DotEnv;
-use TeraBlaze\Core\Console\Application;
+use TeraBlaze\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
 if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
