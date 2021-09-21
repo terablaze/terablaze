@@ -8,6 +8,6 @@ class App extends Parcel
 {
     public function boot(): void
     {
-        $this->loadViewFrom('views');
+        $this->loadViewFrom('resources/views');
     }
 }

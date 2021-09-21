@@ -19,7 +19,7 @@ return [
     */
 
     'paths' => [
-        baseDir('src/App/views'),
+        baseDir('src/App/resources/views'),
     ],
 
     /*
