@@ -9,19 +9,19 @@ return [
 //            'seconds' => 31536000,
 //        ],
 
-        'file' => [
-            'type' => 'file',
-            'ttl' => 31536000,
-            'data_type' => 'json'
-        ],
+//        'file' => [
+//            'type' => 'file',
+//            'ttl' => 31536000,
+//            'data_type' => 'json'
+//        ],
 
-        'memcached' => [
-            'type' => 'memcache',
-            'host' => '127.0.0.1',
-            'port' => 11211,
-            'seconds' => 12,
-            'prefix' => 'dlave_'
-        ],
+//        'memcached' => [
+//            'type' => 'memcache',
+//            'host' => '127.0.0.1',
+//            'port' => 11211,
+//            'seconds' => 12,
+//            'prefix' => 'tb_'
+//        ],
     ],
 
     /*
