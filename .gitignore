@@ -7,5 +7,4 @@
 /storage
 /vendor
 /node_modules
-composer.lock
 .phpcs-cache
