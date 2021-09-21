@@ -43,7 +43,7 @@ return [
     |
     */
     'links' => [
-        publicDir('storage') => storageDir('app/public'),
+        publicDir('storage') => storageDir('public'),
     ],
 
 ];
