@@ -2,6 +2,7 @@
 
 return [
     TeraBlaze\Core\CoreParcel::class => ['all' => true],
+    TeraBlaze\Translation\TranslationParcel::class => ['all' => true],
     TeraBlaze\Log\LogParcel::class => ['all' => true],
     TeraBlaze\Routing\RoutingParcel::class => ['all' => true],
 //    TeraBlaze\Cache\CacheParcel::class => ['all' => true],

@@ -8,6 +8,12 @@ return [
 
     'expire' => env('SESSION_EXPIRE', 10800),
 
+    /*
+     * Determines the Session storage to use for csrf
+     * Can be either "session" or "flash"
+     */
+    'csrf_guard' => "session",
+
     'expire_on_close' => false,
 
     'encrypt' => false,

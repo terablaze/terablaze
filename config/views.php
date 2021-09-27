@@ -38,7 +38,7 @@ return [
         storageDir('cache/' . kernel()->getEnvironment() . '/views')
     ),
 
-    'should_cache' => false,
+    'should_cache' => true,
 
     'engines' => [
         'basic.php' => BasicEngine::class,
