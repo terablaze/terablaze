@@ -19,6 +19,18 @@ return [
             'visibility' => 'public',
         ],
 
+        'uploads' => [
+            'driver' => 'local',
+            'root' => 'public/uploads',
+            'url' => '',
+            'visibility' => 'public',
+            'permission' => [
+                'dir' => [
+                    'public' => 0755,
+                ],
+            ],
+        ],
+
 //        's3' => [
 //            'driver' => 's3',
 //            'async' => '',

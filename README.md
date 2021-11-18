@@ -52,11 +52,12 @@ Your model class should extend the base model`\TeraBlaze\Ripana\ORM\Model`
 ### Views 
 Create your views in the `src/App/views` folder.
 
-Views are simply PHP files and should be loaded from the controllers
-
 To load your view files, simply use 
 
-`$this->loadView('App::view_file')`
+`$viewContent = $this->renderView('App::view_file_with_or_without_extension')`
+or
+`return $this->render('App::view_file_with_or_without_extension');`
+to return a response instance with loaded view as content body
 
 Pass an optional second argument which is an array and is extracted internally and therefore available in the view as variables.
 
@@ -68,7 +69,7 @@ For instance:
 	    'language' = 'PHP'
     ];
     
-    $this->loadView('App::home', $data);
+    $this->renderView('App::home', $data);
 The code above will make the variables `$name`, `$type` and `$language` available in the `src/App/views/home.php` view file
 
 To load a view from within another view, use `$this->includeView('App::included_view_file')`, this allows the included view have access to the variables extracted in the parent view
