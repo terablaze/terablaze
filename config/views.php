@@ -46,7 +46,7 @@ return [
         'literal.php' => LiteralEngine::class,
         'php' => PhpEngine::class,
         'html' => PhaEngine::class,
-        'pha.html' => PhaEngine::class,
+        'pha' => PhaEngine::class,
         'svg' => LiteralEngine::class,
     ]
 ];
