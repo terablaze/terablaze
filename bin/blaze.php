@@ -26,7 +26,11 @@ if ($input->hasParameterOption('--no-debug', true)) {
     putenv('APP_DEBUG=' . $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = '0');
 }
 
-//(new DotEnv(dirname(__DIR__).'/.env'))->load();
+try {
+    (new \Symfony\Component\Dotenv\Dotenv())->usePutenv()->bootEnv(dirname(__DIR__) . '/.env');
+} catch (Throwable $exception) {
+    (new DotEnv(dirname(__DIR__) . '/.env'))->load();
+}
 
 $kernel = new Kernel('dev', true);
 $application = new Application($kernel);
