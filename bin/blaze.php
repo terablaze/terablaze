@@ -28,7 +28,7 @@ if ($input->hasParameterOption('--no-debug', true)) {
 
 try {
     (new \Symfony\Component\Dotenv\Dotenv())->usePutenv()->bootEnv(dirname(__DIR__) . '/.env');
-} catch (Throwable $exception) {
+} catch (Throwable $throwable) {
     (new DotEnv(dirname(__DIR__) . '/.env'))->load();
 }
 
