@@ -45,7 +45,6 @@ return [
         'advanced.php' => AdvancedEngine::class,
         'literal.php' => LiteralEngine::class,
         'php' => PhpEngine::class,
-        'html' => PhaEngine::class,
         'pha' => PhaEngine::class,
         'svg' => LiteralEngine::class,
     ]
