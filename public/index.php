@@ -9,9 +9,9 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 (new \Symfony\Component\Dotenv\Dotenv())->usePutenv()->bootEnv(dirname(__DIR__) . '/.env');
 
-if ($trustedHosts = '^(localhost|terablaze.terablaze.test)$' ?? false) {
-    Request::setTrustedHosts([$trustedHosts]);
-}
+//if ($trustedHosts = '^(localhost|terablaze.terablaze.test)$' ?? false) {
+//    Request::setTrustedHosts([$trustedHosts]);
+//}
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool)$_SERVER['APP_DEBUG']);
 

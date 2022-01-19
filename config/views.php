@@ -1,6 +1,5 @@
 <?php
 
-use TeraBlaze\View\Engine\AdvancedEngine;
 use TeraBlaze\View\Engine\BasicEngine;
 use TeraBlaze\View\Engine\LiteralEngine;
 use TeraBlaze\View\Engine\PhaEngine;
@@ -42,7 +41,6 @@ return [
 
     'engines' => [
         'basic.php' => BasicEngine::class,
-        'advanced.php' => AdvancedEngine::class,
         'literal.php' => LiteralEngine::class,
         'php' => PhpEngine::class,
         'pha' => PhaEngine::class,

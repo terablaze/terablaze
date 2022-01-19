@@ -3699,12 +3699,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/terablaze/core.git",
-                "reference": "6d06699bb39bf0554555f3c75e2cc9fe1f9b3a83"
+                "reference": "fa0aa6e20d192c6b1bb6462bfb0e9efaf05c4182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/terablaze/core/zipball/6d06699bb39bf0554555f3c75e2cc9fe1f9b3a83",
-                "reference": "6d06699bb39bf0554555f3c75e2cc9fe1f9b3a83",
+                "url": "https://api.github.com/repos/terablaze/core/zipball/fa0aa6e20d192c6b1bb6462bfb0e9efaf05c4182",
+                "reference": "fa0aa6e20d192c6b1bb6462bfb0e9efaf05c4182",
                 "shasum": ""
             },
             "require": {
@@ -3792,7 +3792,7 @@
                 "issues": "https://github.com/terablaze/core/issues",
                 "source": "https://github.com/terablaze/core/tree/master"
             },
-            "time": "2021-12-06T03:01:58+00:00"
+            "time": "2022-01-17T03:11:12+00:00"
         },
         {
             "name": "terablaze/psr7",
@@ -4327,5 +4327,5 @@
         "php": "^7.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
