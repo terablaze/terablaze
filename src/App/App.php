@@ -2,7 +2,7 @@
 
 namespace App;
 
-use TeraBlaze\Core\Parcel\Parcel;
+use Terablaze\Core\Parcel\Parcel;
 
 class App extends Parcel
 {

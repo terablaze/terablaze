@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use TeraBlaze\HttpBase\Request;
-use TeraBlaze\HttpBase\Response;
+use Terablaze\HttpBase\Request;
+use Terablaze\HttpBase\Response;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 

@@ -1,7 +1,7 @@
 <?php
 
-use TeraBlaze\Core\Kernel\Kernel as BaseKernel;
-use TeraBlaze\Core\Kernel\KernelInterface;
+use Terablaze\Core\Kernel\Kernel as BaseKernel;
+use Terablaze\Core\Kernel\KernelInterface;
 
 class Kernel extends BaseKernel implements KernelInterface
 {

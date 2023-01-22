@@ -30,11 +30,11 @@ return [
             'log' => true,  // Logs from Monolog (merged in messages if enabled)
             'views' => true,  // Views with their data
             'route' => true,  // Current route information
-            'auth' => false, // Display TeraBlaze authentication status
-            'gate' => true,  // Display TeraBlaze Gate checks
+            'auth' => false, // Display Terablaze authentication status
+            'gate' => true,  // Display Terablaze Gate checks
             'session' => true,  // Display session data
             'mail' => true,  // Catch mail messages
-            'terablaze' => true, // TeraBlaze version and environment
+            'terablaze' => true, // Terablaze version and environment
             'events' => true, // All events fired
             'request' => true, // Regular or special Symfony request logger
             'logs' => true, // Add the latest log messages

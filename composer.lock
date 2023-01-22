@@ -3762,7 +3762,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "TeraBlaze\\": "src/"
+                    "Terablaze\\": "src/"
                 },
                 "files": [
                     "src/Support/functions.php",
@@ -3780,7 +3780,7 @@
                     "email": "tomiwa@teraboxx.com"
                 }
             ],
-            "description": "TeraBlaze",
+            "description": "Terablaze",
             "homepage": "https://github.com/terablaze/terablaze",
             "keywords": [
                 "framework",
@@ -3833,7 +3833,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "TeraBlaze\\Psr7\\": "src/"
+                    "Terablaze\\Psr7\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3893,7 +3893,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "TeraBlaze\\Psr7Server\\": "src/"
+                    "Terablaze\\Psr7Server\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

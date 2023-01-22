@@ -1,9 +1,9 @@
 <?php
 
-use TeraBlaze\View\Engine\BasicEngine;
-use TeraBlaze\View\Engine\LiteralEngine;
-use TeraBlaze\View\Engine\PhaEngine;
-use TeraBlaze\View\Engine\PhpEngine;
+use Terablaze\View\Engine\BasicEngine;
+use Terablaze\View\Engine\LiteralEngine;
+use Terablaze\View\Engine\PhaEngine;
+use Terablaze\View\Engine\PhpEngine;
 
 return [
     /*
@@ -13,7 +13,7 @@ return [
     |
     | Most templating systems load templates from disk. Here you may specify
     | an array of paths that should be checked for your views. Of course
-    | the usual TeraBlaze view path has already been registered for you.
+    | the usual Terablaze view path has already been registered for you.
     |
     */
 

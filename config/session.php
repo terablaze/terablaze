@@ -1,6 +1,6 @@
 <?php
 
-use TeraBlaze\Support\StringMethods;
+use Terablaze\Support\StringMethods;
 
 return [
 

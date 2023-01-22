@@ -1,10 +1,10 @@
-# TeraBlaze change log
+# Terablaze change log
 
 ## v0.1.5 (24-february-2019)
 #### Bugs fixed
 * Other bug fixes
 #### Changes
-* Adds changes to ensure file existence is verified before including or requiring in some core TeraBlaze scripts
+* Adds changes to ensure file existence is verified before including or requiring in some core Terablaze scripts
 #### Addition
 * Added is_https() function and log_error() function
 
@@ -22,7 +22,7 @@
 * Fixes to prevent PHP 7.2 from reporting errors when using array functions on null data 
 * Other bug fixes
 #### Changes
-* Changed the \TeraBlaze\Base::load_view() method to support for a view to be loaded into a variable, useful when using load_view() for mail templates
+* Changed the \Terablaze\Base::load_view() method to support for a view to be loaded into a variable, useful when using load_view() for mail templates
 #### Additions
 * Added a FTP library
 * Added a Memcached session driver

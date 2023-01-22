@@ -1,6 +1,6 @@
-# TeraBlaze
+# Terablaze
 
-TeraBlaze is a PHP MVC framework for developing web applications. It is an open source framework released under MIT License.
+Terablaze is a PHP MVC framework for developing web applications. It is an open source framework released under MIT License.
 
 ## Installation, Configuration and Running
 ### Requirements
@@ -22,7 +22,7 @@ to install in the 'project-folder'
 ### Configuration
 First, create a `.env` file using the `.ent.template` file as a guide
 
-Though the default **TeraBlaze** configuration settings is enough to get you started, it is advisable and in some cases compulsory to go through the `config`  directory and configure accordingly.
+Though the default **Terablaze** configuration settings is enough to get you started, it is advisable and in some cases compulsory to go through the `config`  directory and configure accordingly.
 
 ### Running
 Navigate to your project's root folder via the command line and run 
@@ -32,7 +32,7 @@ visit `http://localhost:8000` in your browser.
 
 If you are not using the build in PHP server, visit your installation folder in your browser through your server *(could be a live domain, remote ip or localhost if you are running on a local machine)*. 
 
-If you see the **TeraBlaze** welcome page without errors, then your installation is successful.
+If you see the **Terablaze** welcome page without errors, then your installation is successful.
 
 The controller to the welcome page is `src/App/Controller/WelcomeController.php` and the view file is `src/App/views/welcome.php`
 
@@ -41,13 +41,13 @@ The controller to the welcome page is `src/App/Controller/WelcomeController.php`
 ### Controllers
 Create your controllers in the `src/App/Controller` folder (You can use any directory as long as the Controller namespace/class matches the directory/file path).
 
-Your controller class should extend the base controller `\TeraBlaze\Controller\Controller` to have access to some nice features the base controller offers
+Your controller class should extend the base controller `\Terablaze\Controller\Controller` to have access to some nice features the base controller offers
 
 
 ### Models
 Create your models in the `src/App/Model` folder (You can use any directory as long as the Model namespace/class matches the directory/file path).
 
-Your model class should extend the base model`\TeraBlaze\Ripana\ORM\Model`
+Your model class should extend the base model`\Terablaze\Ripana\ORM\Model`
 
 ### Views 
 Create your views in the `src/App/views` folder.
@@ -64,7 +64,7 @@ Pass an optional second argument which is an array and is extracted internally a
 For instance:
 
     $data = [
-	    'name' = 'TeraBlaze',
+	    'name' = 'Terablaze',
 	    'type' = 'MVC Framework',
 	    'language' = 'PHP'
     ];

@@ -49,7 +49,7 @@
 <body>
 <div class="main-block">
     <p class="sub-text m-0">Welcome to</p>
-    <h1 class="main-text m-0">TeraBlaze</h1>
+    <h1 class="main-text m-0">Terablaze</h1>
     <p class="sub-text m-0 mt-2">Version: {{ Kernel::TERABLAZE_VERSION }}_dev </p>
 </div>
 <p style="position: absolute; bottom: 0; left: 10px">View project on <a class="link" href="https://www.github.com/terablaze/terablaze" target="_blank">GitHub</a> </p>
